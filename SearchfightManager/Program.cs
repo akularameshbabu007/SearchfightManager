@@ -27,7 +27,7 @@ namespace SearchfightManager
                     queryParams = queryParams + "&args=" + args[i];
                 }
             }
-            HttpResponseMessage response = await client.GetAsync(@"https://localhost:44331/search" + queryParams);
+            HttpResponseMessage response = await client.GetAsync(@"https://localhost:44331/searchfight" + queryParams);
             response.EnsureSuccessStatusCode();
             Console.WriteLine(await response.Content.ReadAsStringAsync());
         }
