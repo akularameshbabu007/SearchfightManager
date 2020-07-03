@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Linq;
 using System.Net.Http;
 using System.Threading.Tasks;
 
@@ -8,6 +9,12 @@ namespace SearchfightManager
     {
         static async Task Main(string[] args)
         {
+            Console.WriteLine("Please enter a query to search....");
+            args = Console.ReadLine()?.Split('"')
+             .Select((element, index) => index % 2 == 0  // If even index
+                                   ? element.Split(new[] { ' ' }, StringSplitOptions.RemoveEmptyEntries)  // Split the item
+                                   : new string[] { element })  // Keep the entire item
+             .SelectMany(element => element).ToArray();
             var client = new HttpClient();
             var queryParams = "?args=";
 
